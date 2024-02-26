@@ -1,0 +1,27 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /data-manipulation
+
+spring:
+  sql:
+    init:
+      platform: unit
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb;MODE=MySQL
+    username: sa
+    password:
+
+mybatis:
+    mapper-locations: classpath*:mybatis/*.xml
+    configuration:
+      map-underscore-to-camel-case: true
+    configuration-properties:
+      dbschema: unit
+
+jwt:
+  public:
+    key: classpath:jwt_pkcs8_pem_public.key
+  private:
+    key: classpath:jwt_pkcs8_pem.key
