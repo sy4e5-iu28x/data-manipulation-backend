@@ -20,8 +20,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import com.e8vu7t.datamanipulation.TestRunnable;
 
 @SpringBootTest
 @AutoConfigureMockMvc(addFilters = false)
@@ -37,6 +40,42 @@ public class DataClassApiTest {
     @ParameterizedTest
     @MethodSource("createTestProvider")
     public void createTest(String requestBody, String expectedBody, String dbPath) throws Exception {
+        // テスト実行内容
+        TestRunnable testRunnable = () -> {
+            // リクエスト生成
+            var request = MockMvcRequestBuilders.post("/dataclasses")
+                .content(requestBody)
+                .contentType(MediaType.APPLICATION_JSON);
+            
+            // ステータス結果検証
+            ResultMatcher statusResultMatcher = (result) -> {
+                MockMvcResultMatchers.status().isOk();
+            };
+
+            // レスポンス結果検証
+            ResultMatcher responseResultMatcher = (result) -> {
+                JSONAssert.assertEquals(
+                    expectedBody,
+                    result.getResponse().getContentAsString(),
+                    false);
+            };
+
+            // テスト実行
+            mockMvc.perform(request)
+                .andExpect(statusResultMatcher)
+                .andExpect(responseResultMatcher);
+        };
+
+        this.test(testRunnable, dbPath);
+    }
+
+    /**
+     * テスト用共通メソッド
+     * @param requestAndExpectRunnable リクエストと期待値判定処理
+     * @param dbPath データベース読み込みパス
+     * @throws Exception テスト失敗時
+     */
+    private void test(TestRunnable requestAndExpectRunnable, String dbPath) throws Exception {
         // テスト実施前提データ適用
         IDatabaseTester databaseTester = new DataSourceDatabaseTester(dataSource,"unit");
         var databaseConfig = databaseTester.getConnection().getConfig();
@@ -47,17 +86,7 @@ public class DataClassApiTest {
         databaseTester.onSetup();
 
         // テスト実行
-        mockMvc.perform(
-            MockMvcRequestBuilders.post("/dataclasses")
-                .content(requestBody)
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON_UTF8))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect((result)-> JSONAssert.assertEquals(
-                    expectedBody,
-                    result.getResponse().getContentAsString(),
-                    false)
-        );
+        requestAndExpectRunnable.runTest();
         
         // テスト実施後データ検証
         var actualDataSet = databaseTester.getConnection().createDataSet();
