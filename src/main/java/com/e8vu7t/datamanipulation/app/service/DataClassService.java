@@ -1,5 +1,7 @@
 package com.e8vu7t.datamanipulation.app.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,4 +32,20 @@ public class DataClassService {
         return dataClassDomainService.create(dataClass);
     }
 
+    /**
+     * データクラスを更新する。
+     * @param dataclass データクラス
+     * @return 更新後のデータクラス
+     */
+    public DataClass update(DataClass dataclass){
+        return dataClassDomainService.update(dataclass);
+    }
+
+    /**
+     * データクラスの一覧を取得する。
+     * @return データクラスの一覧
+     */
+    public List<DataClass> findAll() {
+        return dataClassDomainService.findAll();
+    }
 }

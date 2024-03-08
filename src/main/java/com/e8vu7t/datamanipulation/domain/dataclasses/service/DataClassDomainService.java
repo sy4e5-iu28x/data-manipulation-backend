@@ -1,5 +1,6 @@
 package com.e8vu7t.datamanipulation.domain.dataclasses.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -33,5 +34,23 @@ public class DataClassDomainService {
         dataClass.setId(newId);
         dataClassRepository.insert(dataClass);
         return dataClass;
+    }
+
+    /**
+     * データクラスを更新する。
+     * @param dataClass データクラス
+     * @return 更新後のデータクラス
+     */
+    public DataClass update(DataClass dataClass){
+        dataClassRepository.update(dataClass);
+        return dataClass;
+    }
+
+    /**
+     * データクラス一覧を取得する。
+     * @return データクラス一覧
+     */
+    public List<DataClass> findAll(){
+        return dataClassRepository.findAll();
     }
 }
