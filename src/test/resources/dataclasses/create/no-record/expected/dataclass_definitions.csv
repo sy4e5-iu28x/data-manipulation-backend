@@ -1,2 +1,2 @@
-id,name
-1,新しいクラス
+id,name,type
+1,新しいクラス,UserDefinedClass

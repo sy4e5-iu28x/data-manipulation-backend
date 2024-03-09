@@ -14,7 +14,9 @@ import com.e8vu7t.datamanipulation.domain.dataclasses.model.DataClass;
 
 import lombok.RequiredArgsConstructor;
 
-
+/**
+ * データクラスコントローラ
+ */
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/dataclasses")

@@ -1,4 +1,4 @@
-id,name
-1,クラス1
-2,クラス2
-3,新しいクラス
+id,name,type
+1,クラス1,String
+2,クラス2,Number
+3,新しいクラス,UserDefinedClass

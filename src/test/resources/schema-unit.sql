@@ -1,5 +1,7 @@
+/* JUnit実行用 */
 CREATE SCHEMA IF NOT EXISTS unit;
 
+/* ユーザー */
 CREATE TABLE IF NOT EXISTS unit.users(
 	username VARCHAR(50),
 	password VARCHAR(500) NOT NULL,
@@ -7,6 +9,7 @@ CREATE TABLE IF NOT EXISTS unit.users(
   PRIMARY KEY(username)
 );
 
+/* 権限 */
 CREATE TABLE IF NOT EXISTS unit.authorities (
 	username VARCHAR(50) NOT NULL,
 	authority VARCHAR(50) NOT NULL,
@@ -15,9 +18,18 @@ CREATE TABLE IF NOT EXISTS unit.authorities (
 
 CREATE UNIQUE INDEX ix_auth_username ON unit.authorities (username,authority);
 
+/* データクラス定義 */
 CREATE TABLE IF NOT EXISTS unit.dataclass_definitions (
     id INT NOT NULL,
     name VARCHAR(30) NOT NULL,
+	type VARCHAR(30) NOT NULL,
     PRIMARY KEY(id)
 );
 
+/* データプロパティ定義 */
+CREATE TABLE IF NOT EXISTS unit.dataproperty_definitions (
+    id INT NOT NULL,
+    name VARCHAR(30) NOT NULL,
+	type_class_id INT NOT NULL,
+    PRIMARY KEY(id)
+);

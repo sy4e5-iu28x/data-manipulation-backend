@@ -1,3 +1,3 @@
-id,name
-1,クラス1
-2,クラス2
+id,name,type
+1,クラス1,String
+2,クラス2,Number

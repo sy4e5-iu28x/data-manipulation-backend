@@ -17,4 +17,9 @@ public class DataClass {
      * データクラス名
      */
     private String name;
+
+    /**
+     * データクラスタイプ
+     */
+    private String type;
 }

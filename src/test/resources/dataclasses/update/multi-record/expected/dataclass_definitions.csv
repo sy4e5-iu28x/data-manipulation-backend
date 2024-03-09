@@ -1,4 +1,4 @@
-id,name
-1,クラス1
-2,更新後のクラス
-3,クラス3
+id,name,type
+1,クラス1,String
+2,更新後のクラス,UserDefinedClass
+3,クラス3,DateTime

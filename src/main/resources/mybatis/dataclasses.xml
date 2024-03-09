@@ -6,9 +6,9 @@
 <mapper namespace="com.e8vu7t.datamanipulation.infrastructure.dataclasses.DataClassMapper">
     <insert id="insert" parameterType="com.e8vu7t.datamanipulation.domain.dataclasses.model.DataClass">
     INSERT INTO ${dbschema}.dataclass_definitions
-      (id, name)
+      (id, name, type)
     VALUES
-      (#{id}, #{name})
+      (#{id}, #{name}, #{type})
   </insert>
 
   <select id="findAll" resultType="com.e8vu7t.datamanipulation.domain.dataclasses.model.DataClass">
@@ -21,7 +21,8 @@
 
   <update id="update" parameterType="com.e8vu7t.datamanipulation.domain.dataclasses.model.DataClass">
     UPDATE ${dbschema}.dataclass_definitions SET
-      name = #{name}
+      name = #{name},
+      type = #{type}
     WHERE
       id = #{id}
   </update>

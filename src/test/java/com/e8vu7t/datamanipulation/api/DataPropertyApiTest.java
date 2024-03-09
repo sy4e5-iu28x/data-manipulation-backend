@@ -33,21 +33,21 @@ import com.e8vu7t.datamanipulation.TestUtils;
 @SpringBootTest
 @AutoConfigureMockMvc(addFilters = false)
 @ActiveProfiles("unit")
-public class DataClassApiTest {
+public class DataPropertyApiTest {
 
     /**
      * テスト対象API名
      */
-    private static final String TEST_API_NAME ="dataclasses";
+    private static final String TEST_API_NAME ="dataproperties";
 
     /**
      * データベース実値・期待値妥当性判定処理(共通)
      */
     private static final TestBiConsumer<IDataSet, CsvURLDataSet> dbContentsTest = (actualDataSet, expectedDataSet) -> {
         // テーブル実値 データクラス定義
-        var actualTestTable = actualDataSet.getTable("dataclass_definitions");
+        var actualTestTable = actualDataSet.getTable("dataproperty_definitions");
         // テーブル期待値 データクラス定義
-        var expectedTestTable = expectedDataSet.getTable("dataclass_definitions");
+        var expectedTestTable = expectedDataSet.getTable("dataproperty_definitions");
         // 判定
         Assertion.assertEquals(expectedTestTable, actualTestTable);
     };
@@ -86,7 +86,7 @@ public class DataClassApiTest {
         // テスト実行内容
         TestRunnable testRunnable = () -> {
             // リクエスト生成
-            var request = MockMvcRequestBuilders.post("/dataclasses")
+            var request = MockMvcRequestBuilders.post("/dataproperties")
                 .content(requestBody)
                 .contentType(MediaType.APPLICATION_JSON);
             
@@ -138,7 +138,7 @@ public class DataClassApiTest {
             // 更新対象ID
             final var ID = 2;
             // リクエスト生成
-            var request = MockMvcRequestBuilders.post(String.format("/dataclasses/%1$d",ID))
+            var request = MockMvcRequestBuilders.post(String.format("/dataproperties/%1$d",ID))
                 .content(requestBody)
                 .contentType(MediaType.APPLICATION_JSON);
             
@@ -187,7 +187,7 @@ public class DataClassApiTest {
         // テスト実行内容
         TestRunnable testRunnable = () -> {
             // リクエスト生成
-            var request = MockMvcRequestBuilders.get("/dataclasses");
+            var request = MockMvcRequestBuilders.get("/dataproperties");
                 
             // ステータス結果検証
             ResultMatcher statusResultMatcher = (result) -> {
@@ -231,15 +231,15 @@ public class DataClassApiTest {
             Arguments.arguments(
                 """
                     {
-                        "name": "新しいクラス",
-                        "type": "UserDefinedClass"
+                        "name": "新しいプロパティ",
+                        "typeClassId": 2
                     }
                 """,
                 """
                     {
                         "id": 1,
-                        "name": "新しいクラス",
-                        "type": "UserDefinedClass"
+                        "name": "新しいプロパティ",
+                        "typeClassId": 2
                     }
                         
                 """,
@@ -251,15 +251,15 @@ public class DataClassApiTest {
             Arguments.arguments(
                 """
                     {
-                        "name": "新しいクラス",
-                        "type": "UserDefinedClass"
+                        "name": "新しいプロパティ",
+                        "typeClassId": 2
                     }
                 """,
                 """
                     {
                         "id": 3,
-                        "name": "新しいクラス",
-                        "type": "UserDefinedClass"
+                        "name": "新しいプロパティ",
+                        "typeClassId": 2
                     }
                         
                 """,
@@ -280,15 +280,15 @@ public class DataClassApiTest {
             Arguments.arguments(
                 """
                     {
-                        "name": "更新後のクラス",
-                        "type": "UserDefinedClass"
+                        "name": "更新後のプロパティ",
+                        "typeClassId": 1
                     }
                 """,
                 """
                     {
                         "id": 2,
-                        "name": "更新後のクラス",
-                        "type": "UserDefinedClass"
+                        "name": "更新後のプロパティ",
+                        "typeClassId": 1
 
                     }
                         
@@ -312,18 +312,18 @@ public class DataClassApiTest {
                     [
                         {
                             "id": 1,
-                            "name": "クラス1",
-                            "type": "String"
+                            "name": "プロパティ1",
+                            "typeClassId": 1
                         }, 
                         {
                             "id": 2,
-                            "name": "クラス2",
-                            "type": "Number"
+                            "name": "プロパティ2",
+                            "typeClassId": 1
                         },
                         {
                             "id": 3,
-                            "name": "クラス3",
-                            "type": "UserDefinedClass"
+                            "name": "プロパティ3",
+                            "typeClassId": 2
                         }
                     ]
 
