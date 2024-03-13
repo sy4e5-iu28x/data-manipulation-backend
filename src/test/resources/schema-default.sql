@@ -34,3 +34,42 @@ CREATE TABLE IF NOT EXISTS datamanipulation.dataproperty_definitions (
     PRIMARY KEY(id)
 );
 
+/* データクラス・データプロパティ関係定義 */
+CREATE TABLE IF NOT EXISTS datamanipulation.dataclass_dataproperty_relation_definitions (
+    id INT NOT NULL,
+    dataclass_id INT NOT NULL,
+	dataproperty_id INT NOT NULL,
+    PRIMARY KEY(id)
+);
+
+/* データオブジェクト定義 */
+CREATE TABLE IF NOT EXISTS datamanipulation.dataobject_definitions (
+    id INT NOT NULL,
+    dataclass_id INT NOT NULL,
+    PRIMARY KEY(id)
+);
+
+/* データプロパティ・値関係定義 */
+CREATE TABLE IF NOT EXISTS datamanipulation.dataproperty_value_relation_definitions (
+    id INT NOT NULL,
+    dataclass_id INT NOT NULL,
+    saved_date_time DATETIME NOT NULL,
+    PRIMARY KEY(id)
+);
+
+/* 値定義 */
+CREATE TABLE IF NOT EXISTS datamanipulation.datavalue_definitions (
+    id INT NOT NULL,
+    data_content TEXT NOT NULL,
+	saved_date_time DATETIME NOT NULL,
+    PRIMARY KEY(id)
+);
+
+/* データオブジェクト・データプロパティ・値関係定義 */
+CREATE TABLE IF NOT EXISTS datamanipulation.dataobject_dataproperty_value_relation_definitions (
+    id INT NOT NULL,
+	dataobject_id INT NOT NULL,
+	dataproperty_value_relation_id INT NOT NULL,
+	saved_date_time DATETIME NOT NULL,
+    PRIMARY KEY(id)
+);

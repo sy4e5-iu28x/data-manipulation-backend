@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.e8vu7t.datamanipulation.infrastructure.dataobjects.DataObjectMapper">
+    <insert id="insert" parameterType="com.e8vu7t.datamanipulation.domain.dataobjects.model.DataObject">
+    INSERT INTO ${dbschema}.dataobject_definitions
+      (id, dataclass_id)
+    VALUES
+      (#{id}, #{dataclassId})
+  </insert>
+
+  <select id="findAll" resultType="com.e8vu7t.datamanipulation.domain.dataobjects.model.DataObject">
+    SELECT * FROM ${dbschema}.dataobject_definitions
+  </select>
+
+  <select id="getMaxId" resultType="int">
+    SELECT MAX(id) AS max_id FROM ${dbschema}.dataobject_definitions
+  </select>
+
+  <update id="update" parameterType="com.e8vu7t.datamanipulation.domain.dataobjects.model.DataObject">
+    UPDATE ${dbschema}.dataobject_definitions SET
+      dataclass_id = #{dataclassId}
+    WHERE
+      id = #{id}
+  </update>
+</mapper>

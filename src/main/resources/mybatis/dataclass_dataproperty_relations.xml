@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.e8vu7t.datamanipulation.infrastructure.relations.DataClassDataPropertyRelationMapper">
+    <insert id="insert" parameterType="com.e8vu7t.datamanipulation.domain.relations.model.DataClassDataPropertyRelation">
+    INSERT INTO ${dbschema}.dataclass_dataproperty_relation_definitions
+      (id, dataclass_id, dataproperty_id)
+    VALUES
+      (#{id}, #{dataclassId}, #{datapropertyId})
+  </insert>
+
+  <select id="findAll" resultType="com.e8vu7t.datamanipulation.domain.relations.model.DataClassDataPropertyRelation">
+    SELECT * FROM ${dbschema}.dataclass_dataproperty_relation_definitions
+  </select>
+
+  <select id="getMaxId" resultType="int">
+    SELECT MAX(id) AS max_id FROM ${dbschema}.dataclass_dataproperty_relation_definitions
+  </select>
+
+  <update id="update" parameterType="com.e8vu7t.datamanipulation.domain.relations.model.DataClassDataPropertyRelation">
+    UPDATE ${dbschema}.dataclass_dataproperty_relation_definitions SET
+      dataclass_id = #{dataclassId},
+      dataproperty_id = #{dataPropertyId}
+    WHERE
+      id = #{id}
+  </update>
+</mapper>

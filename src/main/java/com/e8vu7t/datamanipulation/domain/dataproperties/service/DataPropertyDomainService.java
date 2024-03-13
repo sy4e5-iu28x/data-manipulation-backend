@@ -22,8 +22,8 @@ public class DataPropertyDomainService {
     
     /**
      * データプロパティを作成する。
-     * @param dataProperty データクラス
-     * @return 作成したデータクラス
+     * @param dataProperty データプロパティ
+     * @return 作成したデータプロパティ
      */
     public DataProperty create(DataProperty dataProperty){
         // 登録済み最大IDを取得

@@ -29,7 +29,7 @@ public interface DataClassRepository {
 
     /**
      * データクラスを更新する。
-     * @param dataClass
+     * @param dataClass データクラス
      * @return 更新後のデータクラス
      */
     int update(DataClass dataClass);
