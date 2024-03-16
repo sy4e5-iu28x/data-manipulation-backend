@@ -53,4 +53,13 @@ public class DataClassDataPropertyRelationDomainService {
     public List<DataClassDataPropertyRelation> findAll(){
         return classPropertyRelationRepository.findAll();
     }
+
+    /**
+     * データクラスIDをキーとして、データクラス・データプロパティ関係一覧を取得する。
+     * @param dataClassId データクラスID
+     * @return データクラス・データプロパティ関係一覧
+     */
+    public List<DataClassDataPropertyRelation> findByDataClassId(int dataClassId){
+        return classPropertyRelationRepository.findByDataClassId(dataClassId);
+    }
 }

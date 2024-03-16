@@ -24,7 +24,7 @@ import lombok.RequiredArgsConstructor;
 public class DataPropertyController {
 
     /**
-     * データクラスサービス
+     * データプロパティサービス
      */
     private final DataPropertyService dataClassService;
     

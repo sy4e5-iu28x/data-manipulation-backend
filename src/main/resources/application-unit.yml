@@ -20,6 +20,10 @@ mybatis:
     configuration-properties:
       dbschema: unit
 
+logging:
+  level:
+    '[com.e8vu7t.datamanipulation.infrastructure.relations.DataClassDataPropertyRelationMapper]': DEBUG
+
 jwt:
   public:
     key: classpath:jwt_pkcs8_pem_public.key

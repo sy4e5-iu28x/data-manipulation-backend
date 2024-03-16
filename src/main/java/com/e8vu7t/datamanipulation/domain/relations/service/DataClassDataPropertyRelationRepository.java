@@ -22,6 +22,13 @@ public interface DataClassDataPropertyRelationRepository {
     List<DataClassDataPropertyRelation> findAll();
 
     /**
+     * データクラスIDをキーとしたデータクラス・データプロパティ関係の一覧を取得する。
+     * @param dataClassId データクラスID
+     * @return データクラス・データプロパティ関係一覧
+     */
+    List<DataClassDataPropertyRelation> findByDataClassId(int dataClassId);
+
+    /**
      * データクラス・データプロパティ関係の最大IDを取得する。
      * @return データクラス・データプロパティ関係IDでの最大ID
      */
