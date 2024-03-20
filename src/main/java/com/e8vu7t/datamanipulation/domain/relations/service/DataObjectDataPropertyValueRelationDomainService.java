@@ -53,4 +53,13 @@ public class DataObjectDataPropertyValueRelationDomainService {
     public List<DataObjectDataPropertyValueRelation> findAll(){
         return objectPropertyValueRelationRepository.findAll();
     }
+
+    /**
+     * IDからデータオブジェクト・データプロパティ・値関係を取得する。
+     * @param id ID
+     * @return データオブジェクト・データプロパティ・値関係
+     */
+    public List<DataObjectDataPropertyValueRelation> findById(int id){
+        return objectPropertyValueRelationRepository.findById(id);
+    }
 }

@@ -15,6 +15,10 @@
     SELECT * FROM ${dbschema}.datavalue_definitions
   </select>
 
+  <select id="findById" parameterType="int" resultType="com.e8vu7t.datamanipulation.domain.datavalues.model.DataValue">
+    SELECT * FROM ${dbschema}.datavalue_definitions WHERE id = #{id}
+  </select>
+
   <select id="getMaxId" resultType="int">
     SELECT MAX(id) AS max_id FROM ${dbschema}.datavalue_definitions
   </select>

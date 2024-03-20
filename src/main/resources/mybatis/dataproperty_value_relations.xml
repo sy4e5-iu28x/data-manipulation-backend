@@ -6,13 +6,42 @@
 <mapper namespace="com.e8vu7t.datamanipulation.infrastructure.relations.DataPropertyValueRelationMapper">
     <insert id="insert" parameterType="com.e8vu7t.datamanipulation.domain.relations.model.DataPropertyValueRelation">
     INSERT INTO ${dbschema}.dataproperty_value_relation_definitions
-      (id, dataclass_id, saved_date_time)
+      (id, dataproperty_id, datavalue_id, saved_date_time)
     VALUES
-      (#{id}, #{dataclassId}, #{savedDateTime})
+      (#{id}, #{datapropertyId}, #{datavalueId}, #{savedDateTime})
   </insert>
 
   <select id="findAll" resultType="com.e8vu7t.datamanipulation.domain.relations.model.DataPropertyValueRelation">
     SELECT * FROM ${dbschema}.dataproperty_value_relation_definitions
+  </select>
+
+  <select id="findByPropertyValue" parameterType="com.e8vu7t.datamanipulation.domain.relations.model.DataPropertyValueRelation" resultType="com.e8vu7t.datamanipulation.domain.relations.model.DataPropertyValueRelation">
+    SELECT
+      t1.id,
+      t1.dataproperty_id,
+      t1.datavalue_id,
+      t1.saved_date_time
+    FROM ${dbschema}.dataproperty_value_relation_definitions t1
+    INNER JOIN
+      (SELECT  
+        dataproperty_id,
+        datavalue_id,
+        MAX(saved_date_time) as latest_save_date
+      FROM 
+        ${dbschema}.dataproperty_value_relation_definitions
+      GROUP BY
+        dataproperty_id,
+        datavalue_id) t2
+    ON t1.dataproperty_id = t2.dataproperty_id
+      AND t1.datavalue_id = t2.datavalue_id
+      AND t1.saved_date_time = t2.latest_save_date
+    WHERE
+      t1.dataproperty_id = #{datapropertyId}
+      AND t1.datavalue_id = #{datavalueId}
+  </select>
+
+  <select id="findById" parameterType="int" resultType="com.e8vu7t.datamanipulation.domain.relations.model.DataPropertyValueRelation">
+    SELECT * FROM ${dbschema}.dataproperty_value_relation_definitions WHERE id = #{id}
   </select>
 
   <select id="getMaxId" resultType="int">

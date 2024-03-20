@@ -1,0 +1,6 @@
+datavalue_definitions
+dataproperty_value_relation_definitions
+dataproperty_definitions
+dataobject_definitions
+dataobject_dataproperty_value_relation_definitions
+dataclass_definitions

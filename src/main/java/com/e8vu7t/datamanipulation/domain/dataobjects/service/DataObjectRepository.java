@@ -22,6 +22,13 @@ public interface DataObjectRepository {
     List<DataObject> findAll();
 
     /**
+     * IDからデータオブジェクトを取得する。
+     * @param id ID
+     * @return データオブジェクト
+     */
+    List<DataObject> findById(int id);
+
+    /**
      * データオブジェクトの最大IDを取得する。
      * @return データオブジェクトIDでの最大ID
      */

@@ -53,4 +53,13 @@ public class DataValueDomainService {
     public List<DataValue> findAll(){
         return dataValueRepository.findAll();
     }
+
+    /**
+     * IDからデータ値一覧を取得する。
+     * @param id ID
+     * @return データ値一覧
+     */
+    public List<DataValue> findById(int id){
+        return dataValueRepository.findById(id);
+    }
 }

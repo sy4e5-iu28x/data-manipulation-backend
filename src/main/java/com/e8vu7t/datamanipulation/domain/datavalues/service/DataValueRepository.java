@@ -22,6 +22,13 @@ public interface DataValueRepository {
     List<DataValue> findAll();
 
     /**
+     * IDからデータ値を取得する。
+     * @param id ID
+     * @return データ値
+     */
+    List<DataValue> findById(int id);
+
+    /**
      * データ値の最大IDを取得する。
      * @return データ値IDでの最大ID
      */

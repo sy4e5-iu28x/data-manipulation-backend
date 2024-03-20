@@ -22,6 +22,20 @@ public interface DataPropertyValueRelationRepository {
     List<DataPropertyValueRelation> findAll();
 
     /**
+     * データプロパティ・値関係のIDから取得する。
+     * @param param データプロパティ・値関係
+     * @return データプロパティ・値関係
+     */
+    List<DataPropertyValueRelation> findByPropertyValue(DataPropertyValueRelation param);
+
+    /**
+     * IDからデータプロパティ・値関係のIDから取得する。
+     * @param id ID
+     * @return データプロパティ・値関係
+     */
+    List<DataPropertyValueRelation> findById(int id);
+
+    /**
      * データプロパティ・値関係の最大IDを取得する。
      * @return データプロパティ・値関係IDでの最大ID
      */

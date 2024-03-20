@@ -52,7 +52,8 @@ CREATE TABLE IF NOT EXISTS unit.dataobject_definitions (
 /* データプロパティ・値関係定義 */
 CREATE TABLE IF NOT EXISTS unit.dataproperty_value_relation_definitions (
     id INT NOT NULL,
-    dataclass_id INT NOT NULL,
+    dataproperty_id INT NOT NULL,
+    datavalue_id INT NOT NULL,
 	saved_date_time DATETIME NOT NULL,
     PRIMARY KEY(id)
 );

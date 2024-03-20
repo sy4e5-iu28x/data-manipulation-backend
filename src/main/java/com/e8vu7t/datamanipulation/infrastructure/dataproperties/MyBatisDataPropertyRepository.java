@@ -39,6 +39,14 @@ public class MyBatisDataPropertyRepository implements DataPropertyRepository {
      * {@inheritDoc}
      */
     @Override
+    public List<DataProperty> findById(int id) {
+        return dataPropertyMapper.findById(id);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public Optional<Integer> getMaxId() {
         return dataPropertyMapper.getMaxId();
     }

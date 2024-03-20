@@ -53,4 +53,22 @@ public class DataPropertyValueRelationDomainService {
     public List<DataPropertyValueRelation> findAll(){
         return propertyValueRelationRepository.findAll();
     }
+
+    /**
+     * データプロパティ・値関係をプロパティID、値IDから取得する。
+     * @param param データプロパティ・値関係
+     * @return データプロパティ・値関係
+     */
+    public List<DataPropertyValueRelation> findByPropertyValue(DataPropertyValueRelation param){
+        return propertyValueRelationRepository.findByPropertyValue(param);
+    }
+
+    /**
+     * IDからデータプロパティ・値関係を取得する。
+     * @param id ID
+     * @return データプロパティ・値関係
+     */
+    public List<DataPropertyValueRelation> findById(int id){
+        return propertyValueRelationRepository.findById(id);
+    }
 }

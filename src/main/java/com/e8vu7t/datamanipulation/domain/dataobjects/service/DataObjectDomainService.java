@@ -53,4 +53,13 @@ public class DataObjectDomainService {
     public List<DataObject> findAll(){
         return dataObjectRepository.findAll();
     }
+
+    /**
+     * IDからデータオブジェクトを取得する。
+     * @param id ID
+     * @return データオブジェクト
+     */
+    public List<DataObject> findById(int id){
+        return dataObjectRepository.findById(id);
+    }
 }

@@ -52,4 +52,13 @@ public class DataPropertyDomainService {
     public List<DataProperty> findAll(){
         return dataPropertyRepository.findAll();
     }
+
+    /**
+     * IDからデータプロパティ一覧を取得する。
+     * @param id ID
+     * @return データプロパティ
+     */
+    public List<DataProperty> findById(int id){
+        return dataPropertyRepository.findById(id);
+    }
 }

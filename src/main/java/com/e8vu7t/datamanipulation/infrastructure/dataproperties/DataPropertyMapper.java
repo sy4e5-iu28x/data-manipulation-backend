@@ -25,6 +25,12 @@ public interface DataPropertyMapper {
     List<DataProperty> findAll();
 
     /**
+     * IDからデータプロパティを取得する。
+     * @return データプロパティ
+     */
+    List<DataProperty> findById(int id);
+
+    /**
      * データプロパティの最大IDを取得する。
      * @return データプロパティIDでの最大ID
      */
