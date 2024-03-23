@@ -6,12 +6,13 @@ server:
 spring:
   sql:
     init:
+      mode: never
       platform: default
   datasource:
-    driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:testdb;MODE=MySQL;
-    username: sa
-    password:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_PASS:default-pw}
 
 mybatis:
     mapper-locations: classpath*:mybatis/*.xml
